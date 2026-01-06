@@ -1,0 +1,9 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.secondary {
+    color: grey;
+    font-size: 80%;
+    margin-left: 0.3em;
+}
