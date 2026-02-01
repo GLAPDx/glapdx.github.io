@@ -61,33 +61,24 @@ Module.onRuntimeInitialized = () => {
     self.onmessage = (e) => {
         // Parse message
 
-        const { genomes, targetList, maxNumMismatchesInTarget, backgroundList, maxNumMismatchesInBackground, includeLoopPrimers, numPrimersToGenerate } = e.data;
-
-        const [ref] = targetList.splice(0, 1);
+        const { indexFileContents, refFileContents, targetListFileContents, maxNumMismatchesInTarget, backgroundMode, backgroundListFileContents, maxNumMismatchesInBackground, includeLoopPrimers, numPrimersToGenerate } = e.data;
 
         // Prepare inputs
 
         FS.mkdir('inputs')
-
-        writeIndex(genomes);
-        writeRef(ref)
-
-        const hasTargetList = targetList.length > 0;
-        if (hasTargetList) {
-            writeGenomeNames(targetList, 'inputs/target.fa');
-        }
-
-        const hasBackgroundList = backgroundList.length > 0;
-        if (hasBackgroundList) {
-            writeGenomeNames(backgroundList, 'inputs/background.fa');
-        }
+        FS.writeFile('inputs/index.fa', indexFileContents);
+        FS.writeFile('inputs/ref.fa', refFileContents);
+        if (targetListFileContents)
+            FS.writeFile('inputs/target.fa', targetListFileContents);
+        if (backgroundListFileContents)
+            FS.writeFile('inputs/background.fa', backgroundListFileContents);
 
         const args = [
             '--index', 'inputs/index.fa',
             '--ref', 'inputs/ref.fa',
             // --target is handled below
             '--maxNumMismatchesInTarget', maxNumMismatchesInTarget.toString(),
-            // --backgroundMode is handled below
+            '--backgroundMode', backgroundMode,
             // --backgroundListPath is handled below
             '--maxNumMismatchesInBackground', maxNumMismatchesInBackground.toString(),
             // --includeLoopPrimers is handled below
@@ -95,29 +86,41 @@ Module.onRuntimeInitialized = () => {
             '--numThreads', '1', // TODO fix pthreads, then use: String(navigator.hardwareConcurrency),
         ];
         
-        if (hasTargetList)
+        if (targetListFileContents)
             args.push('--target', 'inputs/target.fa');
 
-        if (hasBackgroundList)
-            args.push(
-                '--backgroundMode', 'fromFile',
-                '--backgroundListPath', 'inputs/background.fa');
-        else
-            args.push('--backgroundMode', 'none')
+        if (backgroundMode == 'fromFile')
+            args.push('--backgroundListPath', 'inputs/background.fa');
 
         if (includeLoopPrimers)
             args.push('--includeLoopPrimers');
 
+        console.log('About to launch GLAPD', args);
+
         const exitCode = callMain(args);
 
+        console.log(`GLAPD exit code: ${exitCode}`);
+
+        const tryRead = (path, encoding) => {
+            try {
+                return FS.readFile(path, { encoding });
+            } catch (e) {
+                return null;
+            }
+        }
+
         if (exitCode === 0) {
-            let results = FS.readFile('success.txt', { encoding: 'utf8' });
+            const results = tryRead('success.txt', 'utf8');
+            const workspaceZip = tryRead('workspace.zip', 'binary');
             postMessage({
                 'cmd': 'results',
-                'results': results
+                'args': {
+                    results,
+                    workspaceZip,
+                },
             });
         }
     };
 };
 
-importScripts('glapd-web.js');
+importScripts('portable-glapd.js');
