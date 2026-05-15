@@ -5,18 +5,19 @@
         <meta charset="utf-8" />
         <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="../_app/immutable/entry/start.Bt_yOsp6.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/BnTNsGAY.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/Dup9H7fK.js" rel="modulepreload">
-		<link href="../_app/immutable/entry/app.BLJoOxzU.js" rel="modulepreload">
+        <link href="../_app/immutable/entry/start.Bo8dJar3.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/gtMeuVmW.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/Dn3rSLsj.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/app.IqCB68QV.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/CHncfsjL.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/D1hYfEew.js" rel="modulepreload">
-		<link href="../_app/immutable/nodes/0.671pL12F.js" rel="modulepreload">
-		<link href="../_app/immutable/nodes/4.Dpl8VH8Q.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/LAwLFHfz.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/CMsdzwTY.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/0.BeOj_DiZ.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/DZz2CIcT.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/4.Cl9B_nGF.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/B4yLYE9n.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/DgR5VaNS.js" rel="modulepreload">
 		
-		<link href="../_app/immutable/assets/0.-o5iCt4W.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/0.tGfI-0QZ.css" rel="stylesheet">
     </head>
     <body data-sveltekit-preload-data="hover">
         <div style="display: contents"><!--[--><!--[0--><!--[--><div class="bg-logo-bg text-logo-text p-2"><div class="m-auto flex max-w-5xl items-end"><a href="../" class="ml-2 flex-1 text-3xl"><img src="/logo.svg" alt="GLAPDx logo" width="300"/></a> <a href="../help" class="flex-none pr-3 hover:underline">Help</a>   <a href="../about" class="flex-none hover:underline">About</a></div></div> <div class="m-auto max-w-5xl p-2"><!--[--><h2 class="mb-4 pt-3 text-2xl">Help</h2> <div class="prose max-w-none space-y-6"><section><h3 class="mb-2 text-xl font-semibold">What is GLAPDx?</h3> <p>GLAPDx is a tool for designing <strong>LAMP</strong> (Loop-mediated isothermal AMPlification) primer sets. It
@@ -33,20 +34,21 @@ TTGCTTGC...</pre></div> <div class="rounded-sm border border-slate-200 p-3"><h4 
                     values make specificity checks stricter (rejecting primers that partially match background).
                     Default: 2.</dd></div> <div><dt class="font-semibold">Include loop primers</dt> <dd class="mt-0.5 text-sm text-slate-700">When enabled, GLAPDx designs LF and LB loop primers in addition to the six core LAMP primers. Loop
                     primers accelerate the reaction and are recommended for most applications. Default: Yes.</dd></div> <div><dt class="font-semibold">Number of primers to generate</dt> <dd class="mt-0.5 text-sm text-slate-700">How many primer sets to return. GLAPDx stops once this many valid sets are found. Larger values take
-                    longer but give more options to choose from. Default: 10.</dd></div></dl></section> <section><h3 class="mb-2 text-xl font-semibold">Tips</h3> <ul class="list-disc space-y-2 pl-5 text-sm text-slate-700"><li>All genome names in the reference and target files must exactly match names in the index file.</li> <li>If no primers are found, try increasing the mismatch thresholds.</li> <li>Long runs can take several hours. Make sure that <em>Prevent system from switching to standby</em> is enabled. Note: some browsers disable this automatically
-                when switching tabs.</li> <li>Results and the full workspace (intermediate files, logs) can be saved after the run completes.</li></ul></section></div><!--]--><!----></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+                    longer but give more options to choose from. Default: 10.</dd></div></dl></section> <section><h3 class="mb-2 text-xl font-semibold">Preventing system standby</h3> <p class="mb-3 text-sm text-slate-700">GLAPDx runs entirely in your browser and some designs can take several hours to complete. If your system
+            goes to sleep or the screen turns off, the browser may suspend the computation, causing the run to stall or
+            fail.</p> <p class="mb-2 text-sm text-slate-700">For long runs, a native application that prevents sleep is more reliable than the browser API:</p> <dl class="space-y-2 text-sm"><div><dt class="font-semibold">Windows</dt> <dd class="text-slate-600"><a href="https://learn.microsoft.com/en-us/windows/powertoys/awake" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-800">PowerToys Awake</a></dd></div> <div><dt class="font-semibold">macOS</dt> <dd class="text-slate-600">Run <em>caffeinate -d</em> in Terminal while the analysis is running, or use <a href="https://apps.apple.com/app/amphetamine/id937984704" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-800">Amphetamine</a> from the App Store.</dd></div> <div><dt class="font-semibold">Linux</dt> <dd class="text-slate-600">Run <em>caffeinate -d</em> in Terminal while the analysis is running, see <a href="https://manpages.ubuntu.com/manpages/jammy/man1/caffeinate.1.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-800">caffeinate(1)</a>.</dd></div></dl></section> <section><h3 class="mb-2 text-xl font-semibold">Tips</h3> <ul class="list-disc space-y-2 pl-5 text-sm text-slate-700"><li>All genome names in the reference and target files must exactly match names in the index file.</li> <li>If no primers are found, try increasing the mismatch thresholds.</li> <li>Results and the full workspace (intermediate files, logs) can be saved after the run completes.</li></ul></section></div><!--]--><!----></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_1jsnum1 = {
+					__sveltekit_1jmd2hj = {
 						base: new URL("..", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../_app/immutable/entry/start.Bt_yOsp6.js"),
-						import("../_app/immutable/entry/app.BLJoOxzU.js")
+						import("../_app/immutable/entry/start.Bo8dJar3.js"),
+						import("../_app/immutable/entry/app.IqCB68QV.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],
