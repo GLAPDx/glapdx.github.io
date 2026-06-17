@@ -1,3 +1,5 @@
+// This file is generated from worker.template.js
+
 // Emscripten Module hooks
 
 var Module = {
@@ -25,12 +27,10 @@ Module.onRuntimeInitialized = () => {
         // Parse message
 
         const {
-            indexFileContents,
-            refFileContents,
-            targetListFileContents,
+            targetFileContents,
+            refName,
+            backgroundFileContents,
             maxNumMismatchesInTarget,
-            backgroundMode,
-            backgroundListFileContents,
             maxNumMismatchesInBackground,
             includeLoopPrimers,
             numPrimersToGenerate,
@@ -39,22 +39,17 @@ Module.onRuntimeInitialized = () => {
         // Prepare inputs
 
         FS.mkdir('inputs');
-        FS.writeFile('inputs/index.fa', indexFileContents);
-        FS.writeFile('inputs/ref.fa', refFileContents);
-        if (targetListFileContents) FS.writeFile('inputs/target.fa', targetListFileContents);
-        if (backgroundListFileContents) FS.writeFile('inputs/background.fa', backgroundListFileContents);
+        FS.writeFile('inputs/target_full.fa', targetFileContents);
+        if (backgroundFileContents) FS.writeFile('inputs/background_full.fa', backgroundFileContents);
 
         const args = [
-            '--index',
-            'inputs/index.fa',
+            '--target',
+            'inputs/target_full.fa',
             '--ref',
-            'inputs/ref.fa',
-            // --target is handled below
+            refName,
+            // --background is handled below
             '--maxNumMismatchesInTarget',
             maxNumMismatchesInTarget.toString(),
-            '--backgroundMode',
-            backgroundMode,
-            // --backgroundListPath is handled below
             '--maxNumMismatchesInBackground',
             maxNumMismatchesInBackground.toString(),
             // --includeLoopPrimers is handled below
@@ -64,9 +59,7 @@ Module.onRuntimeInitialized = () => {
             '1', // TODO fix pthreads, then use: String(navigator.hardwareConcurrency),
         ];
 
-        if (targetListFileContents) args.push('--target', 'inputs/target.fa');
-
-        if (backgroundMode == 'fromFile') args.push('--backgroundListPath', 'inputs/background.fa');
+        if (backgroundFileContents) args.push('--background', 'inputs/background_full.fa');
 
         if (includeLoopPrimers) args.push('--includeLoopPrimers');
 
@@ -100,4 +93,4 @@ Module.onRuntimeInitialized = () => {
     };
 };
 
-importScripts('portable-glapd-328bf7e.js');
+importScripts('portable-glapd-6e6643f.js');

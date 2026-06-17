@@ -1,1 +1,0 @@
-var e={maxNumMismatchesInTarget:0,maxNumMismatchesInBackground:2,backgroundMode:`automatic`,includeLoopPrimers:!0,numPrimersToGenerate:10};export{e as t};
