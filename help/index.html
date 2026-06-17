@@ -5,15 +5,15 @@
         <meta charset="utf-8" />
         <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="../_app/immutable/entry/start.DG_IzZzg.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/PhloNOjF.js" rel="modulepreload">
+        <link href="../_app/immutable/entry/start.BwKUq7Ut.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/B89nZ392.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/Dn3rSLsj.js" rel="modulepreload">
-		<link href="../_app/immutable/entry/app.BgYa9PQd.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/app.BM-sZ_tn.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/CHncfsjL.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/D1hYfEew.js" rel="modulepreload">
-		<link href="../_app/immutable/nodes/0.DKa6-5mc.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/0.YH_544fx.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/DZz2CIcT.js" rel="modulepreload">
-		<link href="../_app/immutable/nodes/4.QclWbXI7.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/4.Czq03EVo.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/B4yLYE9n.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/DWNhAswD.js" rel="modulepreload">
 		
@@ -22,34 +22,32 @@
     <body data-sveltekit-preload-data="hover">
         <div style="display: contents"><!--[--><!--[0--><!--[--><div class="bg-logo-bg text-logo-text p-2"><div class="m-auto flex max-w-5xl items-end"><a href="../" class="ml-2 flex-1 text-3xl"><img src="/logo.svg" alt="GLAPDx logo" width="300"/></a> <a href="../help" class="flex-none pr-3 hover:underline">Help</a>   <a href="../about" class="flex-none hover:underline">About</a></div></div> <div class="m-auto max-w-5xl p-2"><!--[--><h2 class="mb-4 pt-3 text-2xl">Help</h2> <div class="prose max-w-none space-y-6"><section><h3 class="mb-2 text-xl font-semibold">What is GLAPDx?</h3> <p>GLAPDx is a tool for designing <strong>LAMP</strong> (Loop-mediated isothermal AMPlification) primer sets. It
             finds primers that amplify a set of target genomes while avoiding amplification of background genomes.</p></section> <section><h3 class="mb-2 text-xl font-semibold">Input files</h3> <p class="mb-3">All input files must be in <strong>FASTA format</strong>. Sequences should be defined only using canonical
-            bases (<strong>A</strong>, <strong>C</strong>, <strong>G</strong>, <strong>T</strong>). In particular, <strong>U</strong>’s should be converted to <strong>T</strong>’s beforehand.</p> <div class="space-y-4"><div class="rounded-sm border border-slate-200 p-3"><h4 class="mb-1 font-semibold">Index file</h4> <p class="text-sm text-slate-700">The complete genome database. Must contain the <strong>names and full sequences</strong> of all genomes relevant to the analysis - both targets and background.</p> <pre class="mt-2 rounded-sm bg-slate-50 p-2 text-xs">>Genome_A
+            bases (<strong>A</strong>, <strong>C</strong>, <strong>G</strong>, <strong>T</strong>). In particular, <strong>U</strong>’s should be converted to <strong>T</strong>’s beforehand.</p> <div class="space-y-4"><div class="rounded-sm border border-slate-200 p-3"><h4 class="mb-1 font-semibold">Target Genomes</h4> <p class="text-sm text-slate-700">All genomes to amplify. Must contain <strong>names and full sequences</strong> for every target
+                    genome, including the reference genome. The reference genome is then selected from a dropdown and
+                    defaults to the first genome in the file.</p> <pre class="mt-2 rounded-sm bg-slate-50 p-2 text-xs">>Genome_A
 ACGTACGT...
 >Genome_B
-TTGCTTGC...</pre></div> <div class="rounded-sm border border-slate-200 p-3"><h4 class="mb-1 font-semibold">Reference genome</h4> <p class="text-sm text-slate-700">One of the target genomes. Must contain <strong>exactly one name and its full sequence</strong>.
-                    GLAPDx uses this genome to anchor the primer search region.</p></div> <div class="rounded-sm border border-slate-200 p-3"><h4 class="mb-1 font-semibold">Target genomes</h4> <p class="text-sm text-slate-700">The other genomes to be amplified. This file contains <strong>names only</strong> (no sequences). All
-                    names must match entries in the index file.</p> <pre class="mt-2 rounded-sm bg-slate-50 p-2 text-xs">>Genome_C
->Genome_D</pre></div> <div class="rounded-sm border border-slate-200 p-3"><h4 class="mb-1 font-semibold">Background genomes (optional)</h4> <p class="text-sm text-slate-700">Genomes that must <strong>not</strong> be amplified. Same format as Target genomes (names only).
-                    When set to <em>Automatic</em>, GLAPDx uses all index genomes that are not in the target set. When
-                    set to <em>None</em>, no specificity check is performed.</p></div></div></section> <section><h3 class="mb-2 text-xl font-semibold">Parameters</h3> <dl class="space-y-3"><div><dt class="font-semibold">Maximum mismatches in target</dt> <dd class="mt-0.5 text-sm text-slate-700">How many mismatches are allowed when checking if a primer binds to a target genome. Higher values
-                    improve sensitivity (primers work on more diverse targets) but may reduce specificity. Default: 0.</dd></div> <div><dt class="font-semibold">Maximum mismatches in background</dt> <dd class="mt-0.5 text-sm text-slate-700">How many mismatches are allowed when checking if a primer binds to a background genome. Higher
-                    values make specificity checks stricter (rejecting primers that partially match background).
-                    Default: 2.</dd></div> <div><dt class="font-semibold">Include loop primers</dt> <dd class="mt-0.5 text-sm text-slate-700">When enabled, GLAPDx designs LF and LB loop primers in addition to the six core LAMP primers. Loop
+TTGCTTGC...</pre></div> <div class="rounded-sm border border-slate-200 p-3"><h4 class="mb-1 font-semibold">Background Genomes (optional)</h4> <p class="text-sm text-slate-700">Genomes that must <strong>not</strong> be amplified. Must contain <strong>names and full
+                    sequences</strong>. Must not overlap with the target genomes. Leave empty for no background check.</p></div></div></section> <section><h3 class="mb-2 text-xl font-semibold">Parameters</h3> <dl class="space-y-3"><div><dt class="font-semibold">Maximum allowed mismatches against target</dt> <dd class="mt-0.5 text-sm text-slate-700">How many mismatches are allowed when checking if a primer binds to a target genome. Higher values
+                    improve sensitivity (primers work on more diverse targets) but may reduce specificity. Default: 0.</dd></div> <div><dt class="font-semibold">Minimum required mismatches against background</dt> <dd class="mt-0.5 text-sm text-slate-700">The minimum number of mismatches a primer must have against a background genome to be considered
+                    non-amplifying. Higher values yield more specific primer sets but accept fewer candidates.
+                    Default: 3.</dd></div> <div><dt class="font-semibold">Include loop primers</dt> <dd class="mt-0.5 text-sm text-slate-700">When enabled, GLAPDx designs LF and LB loop primers in addition to the six core LAMP primers. Loop
                     primers accelerate the reaction and are recommended for most applications. Default: Yes.</dd></div> <div><dt class="font-semibold">Number of primers to generate</dt> <dd class="mt-0.5 text-sm text-slate-700">How many primer sets to return. GLAPDx stops once this many valid sets are found. Larger values take
                     longer but give more options to choose from. Default: 10.</dd></div></dl></section> <section><h3 class="mb-2 text-xl font-semibold">Preventing system standby</h3> <p class="mb-3 text-sm text-slate-700">GLAPDx runs entirely in your browser and some designs can take several hours to complete. If your system
             goes to sleep or the screen turns off, the browser may suspend the computation, causing the run to stall or
-            fail.</p> <p class="mb-2 text-sm text-slate-700">For long runs, a native application that prevents sleep is more reliable than the browser API:</p> <dl class="space-y-2 text-sm"><div><dt class="font-semibold">Windows</dt> <dd class="text-slate-600"><a href="https://learn.microsoft.com/en-us/windows/powertoys/awake" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-800">PowerToys Awake</a></dd></div> <div><dt class="font-semibold">macOS</dt> <dd class="text-slate-600">Run <em>caffeinate -d</em> in Terminal while the analysis is running, or use <a href="https://apps.apple.com/app/amphetamine/id937984704" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-800">Amphetamine</a> from the App Store.</dd></div> <div><dt class="font-semibold">Linux</dt> <dd class="text-slate-600">Run <em>caffeinate -d</em> in Terminal while the analysis is running, see <a href="https://manpages.ubuntu.com/manpages/jammy/man1/caffeinate.1.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-800">caffeinate(1)</a>.</dd></div></dl></section> <section><h3 class="mb-2 text-xl font-semibold">Tips</h3> <ul class="list-disc space-y-2 pl-5 text-sm text-slate-700"><li>All genome names in the reference and target files must exactly match names in the index file.</li> <li>If no primers are found, try increasing the mismatch thresholds.</li> <li>Results and the full workspace (intermediate files, logs) can be saved after the run completes.</li></ul></section></div><!--]--><!----></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+            fail.</p> <p class="mb-2 text-sm text-slate-700">For long runs, a native application that prevents sleep is more reliable than the browser API:</p> <dl class="space-y-2 text-sm"><div><dt class="font-semibold">Windows</dt> <dd class="text-slate-600"><a href="https://learn.microsoft.com/en-us/windows/powertoys/awake" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-800">PowerToys Awake</a></dd></div> <div><dt class="font-semibold">macOS</dt> <dd class="text-slate-600">Run <em>caffeinate -d</em> in Terminal while the analysis is running, or use <a href="https://apps.apple.com/app/amphetamine/id937984704" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-800">Amphetamine</a> from the App Store.</dd></div> <div><dt class="font-semibold">Linux</dt> <dd class="text-slate-600">Run <em>caffeinate -d</em> in Terminal while the analysis is running, see <a href="https://manpages.ubuntu.com/manpages/jammy/man1/caffeinate.1.html" target="_blank" rel="noopener noreferrer" class="underline hover:text-slate-800">caffeinate(1)</a>.</dd></div></dl></section> <section><h3 class="mb-2 text-xl font-semibold">Tips</h3> <ul class="list-disc space-y-2 pl-5 text-sm text-slate-700"><li>Genome names in the background file must not overlap with names in the target genomes file.</li> <li>If no primers are found, try increasing the mismatch thresholds.</li> <li>Results and the full workspace (intermediate files, logs) can be saved after the run completes.</li></ul></section></div><!--]--><!----></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_1nu77oz = {
+					__sveltekit_133vv5k = {
 						base: new URL("..", location).pathname.slice(0, -1)
 					};
 
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../_app/immutable/entry/start.DG_IzZzg.js"),
-						import("../_app/immutable/entry/app.BgYa9PQd.js")
+						import("../_app/immutable/entry/start.BwKUq7Ut.js"),
+						import("../_app/immutable/entry/app.BM-sZ_tn.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 4],
