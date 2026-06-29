@@ -38,7 +38,7 @@ Module.onRuntimeInitialized = () => {
 
         // Prepare inputs
 
-        FS.mkdir('inputs');
+        if (!FS.analyzePath('inputs').exists) FS.mkdir('inputs');
         FS.writeFile('inputs/target_full.fa', targetFileContents);
         if (backgroundFileContents) FS.writeFile('inputs/background_full.fa', backgroundFileContents);
 
